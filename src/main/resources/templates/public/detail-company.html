@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Work CV</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link th:href="@{/assets/css/open-iconic-bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.theme.default.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/magnific-popup.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.theme.default.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/aos.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap-datepicker.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/jquery.timepicker.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/css/bootstrap-reboot.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/css/mixins/_text-hide.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/flaticon.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/icomoon.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap/bootstrap-grid.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap/bootstrap-reboot.css}" rel="stylesheet">
+
+
+    <!-- JS -->
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/jquery-migrate-3.0.1.min.js}"></script>
+    <script th:src="@{/assets/js/popper.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.easing.1.3.js}"></script>
+    <script th:src="@{/assets/js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.stellar.min.js}"></script>
+    <script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/assets/js/aos.js}"></script>
+    <script th:src="@{/assets/js/jquery.animateNumber.min.js}"></script>
+    <script th:src="@{/assets/js/scrollax.min.js}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script th:src="@{/assets/js/google-map.js}"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+<nav class="header_menu navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4	">
+        <a class="navbar-brand" href="/">Work CV</a>
+
+        <div class="collapse navbar-collapse" id="ftco-nav" th:if="${session.user.role.id == 1}">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a th:href="@{/showMyHomePage}" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item"><a th:href=@{/user/get-list-user(userId=${session.userId})} class="nav-link">Ứng cử viên</a></li>
+                <li class="nav-item">
+                    <span th:text="${session.fullName}" class="nav-link"></span>
+                    <ul class="dropdown">
+                        <li>
+                            <a th:href="@{/user/profile(userId=${session.userId})}">Hồ Sơ</a>
+                        </li>
+                        <li><a th:href="@{/user/list-post(userId=${session.userId})}">Danh sách bài đăng</a></li>
+                        <li><a th:href="@{/auth/logout}">Đăng xuất</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item cta mr-md-1"><a th:href="@{/recruitment/post}" class="nav-link">Đăng tuyển</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="collapse navbar-collapse" id="ftco-nav" th:if="${session.user.role.id == 2}">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a th:href="@{/showMyHomePage}" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item">
+                    <span th:text="${session.fullName}" class="nav-link"></span>
+                    <ul class="dropdown">
+                        <li>
+                            <a th:href="@{/user/profileCandidate(userId=${session.userId})}">Hồ Sơ</a>
+                        </li>
+                        <li><a th:href="@{/save-job/get-list(userId=${session.userId})}">Công việc đã lưu</a></li>
+                        <li><a th:href="@{/user/get-list-apply(userId=${session.userId})}">Công việc đã ứng tuyển</a>
+                        </li>
+                        <li><a th:href="@{/user/get-list-company(userId=${session.userId})}">Công ty đã theo dõi</a>
+                        </li>
+                    </ul>
+                </li>
+                <li></li>
+                <li class="nav-item cta cta-colored"><a th:href="@{/auth/logout}" class="nav-link">Đăng xuất</a></li>
+            </ul>
+        </div>
+    </div>
+    </div>
+</nav>
+<!-- END nav -->
+
+
+
+<div class="hero-wrap hero-wrap-2" style="background-image: url('/assets/images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-start">
+            <div class="col-md-12 text-center mb-5">
+                <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Trang chủ <i class="ion-ios-arrow-forward"></i></a></span>Chi tiết <span></span></p>
+                <h1 class="mb-3 bread">Chi tiết công ty</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section style="margin-top: 10px" class="site-section">
+    <div class="container">
+        <div class="row align-items-center mb-5">
+            <div class="col-lg-8 mb-4 mb-lg-0">
+                <div class="d-flex align-items-center">
+                    <div class="border p-2 d-inline-block mr-3 rounded">
+                        <img width="100" height="100" th:src="@{'/assets/images/' + ${company.logo}}">
+                    </div>
+                    <div>
+                        <h2 th:text="${company.companyName}"></h2>
+                        <div>
+                            <span class="icon-briefcase mr-2"></span><span th:text="${company.email}" class="ml-0 mr-2 mb-2"></span>
+                            <span  class="icon-room mr-2"></span ><span th:text="${company.address}" class="m-2"></span>
+
+                        </div>
+                        <input type="hidden" id="idCompany">
+                    </div>
+                </div>
+            </div>
+<!--            <div class="col-lg-4">-->
+<!--                <div class="row">-->
+<!--                    <div th:if="${session.user}" class="col-6">-->
+<!--                        <a th:if="${session.user.role.id == 2}" onclick="follow()" class="btn btn-block btn-light btn-md"><span class="icon-heart-o mr-2 text-danger"></span>Theo dõi</a>-->
+<!--                    </div>-->
+<!--                    <div th:unless="${session.user}" class="col-6">-->
+<!--                        <a  onclick="follow()" class="btn btn-block btn-light btn-md"><span class="icon-heart-o mr-2 text-danger"></span>Theo dõi</a>-->
+<!--                    </div>-->
+<!--                    <div class="col-6">-->
+
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+            <div class="col-lg-4">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="col-6">
+                            <!-- Use the correct ID format for the input element -->
+                            <input type="hidden" th:id="'idCo' + ${company.id}" th:value="${company.id}">
+                            <input type="hidden" th:id="userId" th:value="${session.user.id}">
+                            <form th:action="@{/save-company/save}">
+                                <a th:onclick="'save(' + ${company.id} + ')'" class="btn btn-block btn-light btn-md btn-lg" th:if="${session.user.role.id == 2}">
+                                    <span class="icon-heart-o mr-2 text-danger"></span></a>
+                            </form>
+                        </div>
+                    </div>
+                    <!--                    <div class="col-6">-->
+                    <!--                        <a data-toggle="modal" class="btn btn-block btn-primary btn-md">Ứng tuyển</a>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="mb-5">
+
+                    <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Mô tả công việc</h3>
+                    <p th:text="${company.description}"></p>
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+                <div class="bg-light p-3 border rounded mb-4">
+                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Tóm tắt công việc</h3>
+                    <ul class="list-unstyled pl-3 mb-0">
+
+                        <li class="mb-2"><strong class="text-black">Email công ty: </strong> <span th:text="${company.email}"></span></li>
+                        <li class="mb-2"><strong class="text-black">Số điện thoại: </strong> <span th:text="${company.phoneNumber}"></span></li>
+                        <li class="mb-2"><strong class="text-black">Đại chỉ: </strong> <span th:text="${company.address}"></span></li>
+                    </ul>
+                </div>
+
+                <div class="bg-light p-3 border rounded">
+                    <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+                    <div class="px-3">
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+                        <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function save(id) {
+    var name = "#idRe" + id;
+    var idCo = "#idCo" + id;
+    var coId = $(idCo).val();
+    var formData = new FormData();
+    var userId = $("#userId").val();
+    formData.append('userId', userId);
+    formData.append('idCo', coId); // Use the coId value, not the idCo selector
+    $.ajax({
+        type: 'POST',
+        url: '/save-company/save',
+        contentType: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+            console.log(data);
+            if (data === "false") {
+                swal({
+                    title: 'Bạn cần phải đăng nhập!',
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'error'
+                });
+            } else if (data === "unsaved") { // Job already saved, so remove it
+                swal({
+                    title: 'Đã xóa khỏi danh sách lưu!',
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                });
+                // Update UI here to reflect that the job is no longer saved
+                // For example, you can change the icon or button color
+
+            } else if (data === "saved") { // Job not saved, so save it
+                swal({
+                    title: 'Lưu thành công!',
+                    icon: 'success',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'success'
+                });
+                // Update UI here to reflect that the job is saved
+
+            } else {
+                swal({
+                    title: 'Có lỗi xảy ra!',
+                    icon: 'error',
+                    timer: 3000,
+                    buttons: true,
+                    type: 'error'
+                });
+            }
+        },
+        error: function (err) {
+            alert(err);
+        }
+    });
+}
+    </script>
+</section>
+
+<footer class="footer ftco-footer ftco-bg-dark ftco-section">
+    <div class="container">
+  
+      <div class="row">
+        <div class="col-md-12 text-center">
+  
+          <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>  <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Thanh Trinh</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

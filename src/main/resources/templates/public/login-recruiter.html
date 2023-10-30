@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Work CV</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link th:href="@{/assets/css/open-iconic-bootstrap.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/animate.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.theme.default.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/magnific-popup.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.carousel.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/owl.theme.default.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/aos.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/ionicons.min.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap-datepicker.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/jquery.timepicker.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/css/bootstrap-reboot.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/css/mixins/_text-hide.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/flaticon.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/icomoon.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/style.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap/bootstrap-grid.css}" rel="stylesheet">
+    <link th:href="@{/assets/css/bootstrap/bootstrap-reboot.css}" rel="stylesheet">
+
+
+    <!-- JS -->
+    <script th:src="@{/assets/js/jquery.min.js}"></script>
+    <script th:src="@{/assets/js/jquery-migrate-3.0.1.min.js}"></script>
+    <script th:src="@{/assets/js/popper.min.js}"></script>
+    <script th:src="@{/assets/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.easing.1.3.js}"></script>
+    <script th:src="@{/assets/js/jquery.waypoints.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.stellar.min.js}"></script>
+    <script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/assets/js/aos.js}"></script>
+    <script th:src="@{/assets/js/jquery.animateNumber.min.js}"></script>
+    <script th:src="@{/assets/js/scrollax.min.js}"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+    <script th:src="@{/assets/js/google-map.js}"></script>
+    <script th:src="@{/assets/js/main.js}"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+<body>
+<body>
+<nav class="header_menu navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container-fluid px-md-4	">
+        <a class="navbar-brand" th:href="@{/showMyLoginPage}">Work CV</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav" th:if="${session.user.status == 1}">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active"><a th:href="@{/showMyHomePage}" class="nav-link">Trang chủ</a></li>
+                <li class="nav-item"><a th:href=@{/user/get-list-user(userId=${session.userId})} class="nav-link">Ứng cử viên</a></li>
+                <li class="nav-item">
+                    <span th:text="${session.fullName}" class="nav-link"></span>
+                    <ul class="dropdown">
+                        <li>
+                            <a th:href="@{/user/profile(userId=${session.userId})}">Hồ Sơ</a>
+                        </li>
+                        <li><a th:href="@{/user/list-post(userId=${session.userId})}">Danh sách bài đăng</a></li>
+                        <li><a th:href="@{/auth/logout}">Đăng xuất</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item cta mr-md-1"><a th:href="@{/recruitment/post}" class="nav-link">Đăng tuyển</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="hero-wrap hero-wrap-2" style="background-image: url('user/assets/images/bg_1.jpg');"
+     data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-start">
+            <div class="col-md-12 text-center mb-5">
+                <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Trang chủ <i
+                        class="ion-ios-arrow-forward"></i></a></span> đăng nhập<span></span></p>
+                <h1 class="mb-3 bread">Welcome to HR Home Page</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div th:if="${msg_register_success}" class="toast" data-delay="2500"
+     style="position:fixed; top: 100PX; right: 10PX;z-index: 2000;width: 300px">
+    <script>
+      swal({
+        title: 'Đăng ký thành công!',
+        /* text: 'Redirecting...', */
+        icon: 'success',
+        timer: 3000,
+        buttons: true,
+        type: 'success'
+      })
+
+    </script>
+</div>
+
+<div th:if="${msg_register_error}" class="toast" data-delay="2500"
+     style="position:fixed; top: 100PX; right: 10PX;z-index: 2000;width: 300px">
+    <script>
+    swal({
+      title: 'Đăng ký thất bại!',
+      /* text: 'Redirecting...', */
+      icon: 'error',
+      timer: 3000,
+      buttons: true,
+      type: 'error'
+    })
+
+    </script>
+</div>
+<!-- HOME -->
+<section class="section-hero overlay inner-page bg-image"
+         th:style="'background-image: url(\'' + @{/images/hero_1.jpg} + '\');'" id="home-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <h1 class="text-white font-weight-bold">Welcome to HR Home Page</h1>
+                <div class="custom-breadcrumbs">
+                    <!--          <a href="#">Trang chủ</a> <span class="mx-2 slash">/</span>-->
+                    <!--          <span class="text-white"><strong>Đăng nhập</strong></span>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div th:if="${session.user.status == 0}" class="container-fluid" style="text-align: center">
+    <p style="font-size: 20px;font-weight: bold;color: #aaa;margin-top: 10px">Xác thực email đăng nhập</p>
+    <div style="width: 600px;height: 400px;border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;margin: 20px auto;padding: 15px">
+        <p style="line-height: 35px;font-size: 16px">Xin chào, <span th:text="${session.user.fullName}"></span> và
+            làm theo hướng dẫn trong email.
+            Trường hợp không nhận được email, bạn vui lòng bấm nút Nhận email xác thực dưới đây.</p>
+        <div class="row form-group">
+            <form th:action="@{/user/confirm-account}" method="post" th:object="${user}" class="col-md-12">
+                <input type="hidden" th:value="${session.user.email}" name="email"
+                       class="btn px-4 btn-primary text-white">
+                <input type="submit" value="Nhận email xác thực" class="btn px-4 btn-primary text-white">
+            </form>
+        </div>
+
+
+<!--        <div class="form-group row">-->
+<!--            <label class="col-sm-4 col-form-label">Passcode: </label>-->
+<!--            <form th:action="@{/user/confirm-passcode}" method="post" th:object="${user}">-->
+<!--                <input type="hidden" th:value="${session.user.email}" name="email">-->
+<!--                <label>-->
+<!--                    <input type="text" value="">-->
+<!--                </label>-->
+<!--                <div class="text-center">-->
+<!--                    <input type="submit" value="Verify" class="btn btn-primary">-->
+<!--                </div>-->
+
+<!--            </form>-->
+<!--        </div>-->
+
+        <p>Mọi thắc mắc vui lòng liên hệ bộ phận CSKH của WorkCV:<br></p>
+        - Điện thoại:<span style="color:#5f80ec">(024) 6680 5588</span><br>
+        - Email: <a href="#" style="color:#5f80ec"> hotro@workcv.vn</a>
+    </div>
+
+    <div th:if="${comfirm_await}" style="width: 600px;height: 400px;border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 10px;margin: 20px auto;padding: 15px">
+        <p style="line-height: 35px;font-size: 16px">Xin chào, <span th:text="${session.user.fullName}"></span> .Bạn
+            đã gửi yêu cầu xác thực thành công,
+            vui lòng kiểm tra mail để xác thực.Cảm ơn bạn!!!
+        </p>
+        <p>Mọi thắc mắc vui lòng liên hệ bộ phận CSKH của WorkCV:<br></p>
+        - Điện thoại:<span style="color:#5f80ec">(024) 6680 5588</span><br>
+        - Email: <a href="#" style="color:#5f80ec"> hotro@workcv.vn</a>
+    </div>
+</div>
+
+
+<!--<section class="site-section">-->
+<!--  <div class="container">-->
+<!--    <div class="row">-->
+<!--      <div class="col-lg-6 mb-5">-->
+<!--        <h2 class="mb-4">Đăng kí</h2>-->
+<!--        <form th:action="@{/auth/register}" method="post" class="p-4 border rounded" th:object="${newUser}">-->
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Email</label>-->
+<!--              <input type="email" id="email" name="email" class="form-control" placeholder="Email" th:field="*{email}" required>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Họ và tên</label>-->
+<!--              <input type="text" id="email" name="fullName" class="form-control" placeholder="Họ và tên" th:field="*{fullName}" required>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Mật khẩu</label>-->
+<!--              <input type="password" id=""  name="password" class="form-control" placeholder="Mật khẩu" th:field="*{password}" required>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row form-group mb-4">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Nhập lại mật khẩu</label>-->
+<!--              <input type="password" id="fname" name="rePassword" class="form-control" placeholder="Nhập lại mật khẩu" required>-->
+<!--              <span th:if="${rePassword != null or password != rePassword}" class="text-danger">Mật khẩu không khớp</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Vai trò</label>-->
+<!--              <select class="form-control" name="role_id" aria-label="Default select example" required>-->
+<!--                <option selected>Chọn vai trò</option>-->
+<!--&lt;!&ndash;                <option value="1">Ứng cử viên</option>&ndash;&gt;-->
+<!--&lt;!&ndash;                <option value="2">Công ty</option>&ndash;&gt;-->
+<!--                <th:block th:each="role : ${roleList}">-->
+<!--                  <option th:value="${role.id}">-->
+<!--                    <span th:text="${role.roleName}"></span>-->
+<!--                  </option>-->
+<!--                </th:block>-->
+<!--              </select>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12">-->
+<!--              <input type="submit" value="Đăng kí" class="btn px-4 btn-primary text-white">-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--      <div class="col-lg-6">-->
+<!--        <h2 class="mb-4">Đăng nhập</h2>-->
+<!--        <form th:action="@{/auth/login}" method="post" class="p-4 border rounded">-->
+<!--          <div th:if="${error}">-->
+<!--            <i>Sorry! You entered invalid username/ password</i>-->
+<!--          </div>-->
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Email</label>-->
+<!--              <input type="email" id="fname" name="email" class="form-control" placeholder="Email" required>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="row form-group mb-4">-->
+<!--            <div class="col-md-12 mb-3 mb-md-0">-->
+<!--              <label class="text-black" for="fname">Mật khẩu</label>-->
+<!--              <input type="password" id="fname" name="password" class="form-control" placeholder="Mật khẩu" required>-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--          <div class="row form-group">-->
+<!--            <div class="col-md-12">-->
+<!--              <input type="submit" value="Đăng nhập" class="btn px-4 btn-primary text-white">-->
+<!--            </div>-->
+<!--          </div>-->
+
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+</section>
+
+<!--<footer th:replace="public/fragments :: footer" class="ftco-footer ftco-bg-dark ftco-section">-->
+
+<!--</footer>-->
+
+<footer th:replace="~{public/footer :: footer}" class="ftco-footer ftco-bg-dark ftco-section"></footer>
+
+</body>
+</html>

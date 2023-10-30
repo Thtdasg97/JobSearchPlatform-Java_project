@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Confirmation</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <!-- Add your custom CSS styles if needed -->
+  <style>
+        /* Custom CSS styles here */
+    </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="mt-5">Registration Confirmation</h1>
+
+  <p>Dear <span th:text="${newUser.fullName}"></span>,</p>
+
+  <p>Thank you for registering with our website. Your account has been successfully created.</p>
+
+  <p>Here are your registration details:</p>
+
+  <ul>
+    <li><strong>Email:</strong> <span th:text="${newUser.email}"></span></li>
+    <li><strong>Full Name:</strong> <span th:text="${newUser.fullName}"></span></li>
+    <li><strong>Role: </strong> <span th:text="${newUser.role.roleName}"></span></li>
+<!--    <li><strong>Full Name:</strong> <span th:text="${newUser.}"></span> <span th:text="${user.lastName}"></span></li>-->
+    <!-- Add any additional registration details here -->
+  </ul>
+
+  <p>If you have any questions or need assistance, please feel free to contact us.</p>
+
+  <p>Best regards,</p>
+
+  <p>Your Website Team</p>
+
+  <!-- Add a link back to the login page -->
+  <a class="btn btn-primary mt-3" th:href="@{/showMyLoginPage}">Back to Login</a>
+</div>
+
+<!-- Include Bootstrap JS (optional) -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

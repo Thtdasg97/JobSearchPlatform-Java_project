@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Warning</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        h1 {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        .warning-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="warning-container">
+    <h1>Cảnh báo file upload</h1>
+    <p>Cám ơn bạn đã upload file, sau đây là một vài thông tin khi upload:</p>
+    <ul>
+        <li>File ảnh nếu trên 1Mb thì sẽ không upload được.</li>
+        <li>Quá trình upload hình ảnh sẽ mất thời gian để server render file ảnh.</li>
+        <li>Nếu sau khi upload chưa hiển thị ảnh ngay lập tức bạn vui lòng đợi trong vài phút và refresh lại trang.</li>
+    </ul>
+    <p>Mong bạn thông cảm và chúc bạn một ngày làm việc vui vẻ.</p>
+
+    <div class="button-container">
+        <a th:href="@{/user/profile(userId=${session.userId})}">Go back to User Profile</a>
+    </div>
+</div>
+</body>
+</html>
