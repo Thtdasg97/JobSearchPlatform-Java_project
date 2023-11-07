@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>springasm02</artifactId>
+	<artifactId>JobSearchPlatform</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springasm02</name>
 	<description>ASM 02 Project Spring</description>
